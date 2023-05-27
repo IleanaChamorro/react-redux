@@ -17,6 +17,7 @@ export const initialState = {
   cart: [],
 };
 
+//en caso de que el estado no se la pase la accion, lo agarra de initialState
 export function shoppingReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART: {
