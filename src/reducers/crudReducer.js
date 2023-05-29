@@ -1,26 +1,26 @@
-import { TYPES } from "../actions/crudActions";
+import { CREATE_DATA, DELETE_DATA, NO_DATA, READ_ALL_DATA, UPDATE_DATA } from "../types";
 
+//Inicializar estado
 export const crudInitialState = {
   db: null,
 };
 
 export function crudReducer(state, action) {
   switch (action.type) {
-    case TYPES.READ_ALL_DATA: {
-      //console.log(action.payload);
+    case READ_ALL_DATA: {
       return {
         ...state,
         db: action.payload.map((data) => data),
       };
     }
-    case TYPES.CREATE_DATA: {
+    case CREATE_DATA: {
       //console.log(action.payload);
       return {
         ...state,
         db: [...state.db, action.payload],
       };
     }
-    case TYPES.UPDATE_DATA: {
+    case UPDATE_DATA: {
       //console.log(action.payload);
 
       let newData = state.db.map((el) =>
@@ -32,8 +32,7 @@ export function crudReducer(state, action) {
         db: newData,
       };
     }
-    case TYPES.DELETE_DATA: {
-      //console.log(action.payload);
+    case DELETE_DATA: {
       let newData = state.db.filter((el) => el.id !== action.payload);
 
       return {
@@ -41,7 +40,7 @@ export function crudReducer(state, action) {
         db: newData,
       };
     }
-    case TYPES.NO_DATA:
+    case NO_DATA:
       return crudInitialState;
     default:
       return state;

@@ -1,5 +1,5 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { TYPES } from "../actions/crudActions";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { helpHttp } from "../helpers/helpHttp";
 import { crudInitialState, crudReducer } from "../reducers/crudReducer";
 import CrudForm from "./CrudForm";
@@ -8,8 +8,8 @@ import Loader from "./Loader";
 import Message from "./Message";
 
 const CrudApi = () => {
-  //const [db, setDb] = useState(null);
-  const [state, dispatch] = useReducer(crudReducer, crudInitialState);
+  //acceso al estado principal
+  const state = useSelector(state => state);
   const { db } = state;
   const [dataToEdit, setDataToEdit] = useState(null);
   const [error, setError] = useState(null);
